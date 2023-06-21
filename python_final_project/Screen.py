@@ -22,7 +22,8 @@ class Screen:
 
         for shape in shapes:
             re_shape = PhotoImage(file=shape).subsample(3, 3)
-            self.window.addshape(shape, turtle.Shape('image', re_shape))
+            shape_name = shape[shape.find('/')+1:len(shape)]
+            self.window.addshape(shape_name, turtle.Shape('image', re_shape))
 
         return self.window
 

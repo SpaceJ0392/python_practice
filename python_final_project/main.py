@@ -7,7 +7,7 @@ from Player import Player
 from Screen import Screen
 
 window = Screen()
-window = window.set_up(['cacti.gif', 'dino_1.gif', 'ground.gif'], width=600, height=400, title='python_final')
+window = window.set_up(['image/cacti.gif', 'image/dino_1.gif', 'image/ground.gif'], width=600, height=400, title='python_final')
 
 # 배경 초기화
 Screen.set_screen()
