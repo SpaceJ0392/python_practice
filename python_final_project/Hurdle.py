@@ -6,7 +6,7 @@ from Sprite import Sprite
 class Hurdle(Sprite):
 
     def __init__(self, dx=-0.2):
-        super().__init__(shape='cacti.gif', location=30, y=-90)
+        super().__init__(shape='cacti.gif', y=-90)
         self.dx = dx
         self.dy = 0
 
