@@ -15,7 +15,6 @@ Screen.set_screen()
 # 바닥 초기화
 ground = Ground()
 ground.set_ground(0)
-ground_speed = -0.13
 
 # 플레이어 생성
 player = Player()
@@ -44,20 +43,13 @@ while not end_flag:
         hurdle = Hurdle.make_hurdle(dx=speed)
 
     for item in hurdle:
-        # 허들 이동 & 바닥 이동
+        # 허들 이동
         item.setx(item.xcor() + item.dx)
-        ground.clear()
-        ground.set_ground(ground.xcor() + ground_speed)  # 초기에 허들과의 속도 차로 인해 임의로 설정
 
         # 허들이 공간을 넘어가면 삭제
         if item.xcor() < -350:
             hurdle.remove(item)
             item.clear()
-
-        # 바닥이 없어지기 전에 새로운 바닥 생성
-        if ground.xcor() < -100:
-            ground.clear()
-            ground.set_ground(100 + speed)
 
         # 허들과 충돌시 게임 종료
         if item.is_aabb_collision(player):
@@ -65,6 +57,15 @@ while not end_flag:
             temp = round(end - begin, 1)
 
             Screen.set_ending(temp)
+
+    # 바닥 이동
+    ground.clear()
+    ground.set_ground(ground.xcor() + speed)  # 초기에 허들과의 속도 차로 인해 임의로 설정
+
+    # 바닥이 없어지기 전에 새로운 바닥 생성
+    if ground.xcor() < -100:
+        ground.set_ground(180 + speed)
+
 
     # 사긴이 5초이상 경과 하면 허들 속도 증가 (단, 최대 속도는 -0.5)
     if end - temp > 5 and speed > -0.5:
